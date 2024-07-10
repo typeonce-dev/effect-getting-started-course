@@ -10,6 +10,9 @@ dependencies:
     version: 3.4.7
 
 devDependencies:
+  '@types/node':
+    specifier: ^20.14.10
+    version: 20.14.10
   tsx:
     specifier: ^4.16.2
     version: 4.16.2
@@ -226,6 +229,12 @@ packages:
     dev: true
     optional: true
 
+  /@types/node@20.14.10:
+    resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /effect@3.4.7:
     resolution: {integrity: sha512-WnxvyX4fksdotDHBXcCfZpxFlY77wMaWP/GIRnr7aJZj9U+k+4QRWd1Ee/OU/jlswyC+MlO5YXilGfcz6WN8Lg==}
     dev: false
@@ -294,4 +303,8 @@ packages:
     resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
+
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
     dev: true
