@@ -28,19 +28,24 @@ const jsonResponse = (response: Response) =>
     catch: (): JsonError => ({ _tag: "JsonError" }),
   });
 
+const decodePokemon = Schema.decodeUnknown(Pokemon);
+
 const program = Effect.gen(function* () {
   const response = yield* fetchRequest;
   if (!response.ok) {
     return yield* Effect.fail<FetchError>({ _tag: "FetchError" });
   }
 
-  return yield* jsonResponse(response);
+  const json = yield* jsonResponse(response);
+
+  return yield* decodePokemon(json);
 });
 
 const main = program.pipe(
   Effect.catchTags({
     FetchError: () => Effect.succeed("Fetch error"),
     JsonError: () => Effect.succeed("Json error"),
+    ParseError: () => Effect.succeed("Parse error"),
   })
 );
 
