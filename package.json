@@ -15,6 +15,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "effect": "^3.4.7"
+    "@effect/schema": "^0.68.21",
+    "effect": "^3.5.1"
   }
 }

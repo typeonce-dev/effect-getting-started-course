@@ -5,9 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@effect/schema':
+    specifier: ^0.68.21
+    version: 0.68.21(effect@3.5.1)
   effect:
-    specifier: ^3.4.7
-    version: 3.4.7
+    specifier: ^3.5.1
+    version: 3.5.1
 
 devDependencies:
   '@types/node':
@@ -21,6 +24,15 @@ devDependencies:
     version: 5.5.3
 
 packages:
+
+  /@effect/schema@0.68.21(effect@3.5.1):
+    resolution: {integrity: sha512-N+UmVaBXyAz4g0eMPKUOvz4lrjlboAnYog3tIiKlwFMUhGqI1Vq+GQ8dteXisqqKJzzLFn15R9LE6uoX/mlAlw==}
+    peerDependencies:
+      effect: ^3.5.1
+    dependencies:
+      effect: 3.5.1
+      fast-check: 3.19.0
+    dev: false
 
   /@esbuild/aix-ppc64@0.21.5:
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -235,8 +247,8 @@ packages:
       undici-types: 5.26.5
     dev: true
 
-  /effect@3.4.7:
-    resolution: {integrity: sha512-WnxvyX4fksdotDHBXcCfZpxFlY77wMaWP/GIRnr7aJZj9U+k+4QRWd1Ee/OU/jlswyC+MlO5YXilGfcz6WN8Lg==}
+  /effect@3.5.1:
+    resolution: {integrity: sha512-pwEqTNdPTvz7LzWKz99VeLLklOlgfqgWVXDepCudrkTU6ufaLqJ+62Sd42BaiGAt1vrnJBNhtpht+u+/7LK32g==}
     dev: false
 
   /esbuild@0.21.5:
@@ -270,6 +282,13 @@ packages:
       '@esbuild/win32-x64': 0.21.5
     dev: true
 
+  /fast-check@3.19.0:
+    resolution: {integrity: sha512-CO2JX/8/PT9bDGO1iXa5h5ey1skaKI1dvecERyhH4pp3PGjwd3KIjMAXEg79Ps9nclsdt4oPbfqiAnLU0EwrAQ==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      pure-rand: 6.1.0
+    dev: false
+
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -283,6 +302,10 @@ packages:
     dependencies:
       resolve-pkg-maps: 1.0.0
     dev: true
+
+  /pure-rand@6.1.0:
+    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
+    dev: false
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
