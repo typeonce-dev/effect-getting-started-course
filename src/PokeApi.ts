@@ -1,40 +1,45 @@
 import { Schema } from "@effect/schema";
-import { Context, Effect } from "effect";
-import { BuildPokeApiUrl } from "./BuildPokeApiUrl";
+import { Context, Effect, Layer } from "effect";
+import { BuildPokeApiUrl, BuildPokeApiUrlLive } from "./BuildPokeApiUrl";
 import type { FetchError, JsonError } from "./errors";
-import { PokemonCollection } from "./PokemonCollection";
+import { PokemonCollection, PokemonCollectionLive } from "./PokemonCollection";
 import { Pokemon } from "./schemas";
 
-const make = {
-  getPokemon: Effect.gen(function* () {
-    const pokemonCollection = yield* PokemonCollection;
-    const buildPokeApiUrl = yield* BuildPokeApiUrl;
+const make = Effect.gen(function* () {
+  const pokemonCollection = yield* PokemonCollection;
+  const buildPokeApiUrl = yield* BuildPokeApiUrl;
 
-    const requestUrl = buildPokeApiUrl({ name: pokemonCollection[0] });
+  return {
+    getPokemon: Effect.gen(function* () {
+      const requestUrl = buildPokeApiUrl({ name: pokemonCollection[0] });
 
-    const response = yield* Effect.tryPromise({
-      try: () => fetch(requestUrl),
-      catch: (): FetchError => ({ _tag: "FetchError" }),
-    });
+      const response = yield* Effect.tryPromise({
+        try: () => fetch(requestUrl),
+        catch: (): FetchError => ({ _tag: "FetchError" }),
+      });
 
-    if (!response.ok) {
-      return yield* Effect.fail<FetchError>({ _tag: "FetchError" });
-    }
+      if (!response.ok) {
+        return yield* Effect.fail<FetchError>({ _tag: "FetchError" });
+      }
 
-    const json = yield* Effect.tryPromise({
-      try: () => response.json(),
-      catch: (): JsonError => ({ _tag: "JsonError" }),
-    });
+      const json = yield* Effect.tryPromise({
+        try: () => response.json(),
+        catch: (): JsonError => ({ _tag: "JsonError" }),
+      });
 
-    return yield* Schema.decodeUnknown(Pokemon)(json);
-  }),
-};
+      return yield* Schema.decodeUnknown(Pokemon)(json);
+    }),
+  };
+});
 
 type PokeApi = typeof make;
 
-export const PokeApi = Context.GenericTag<PokeApi>("PokeApi");
+export const PokeApi =
+  Context.GenericTag<Effect.Effect.Success<PokeApi>>("PokeApi");
 
-export const PokeApiLive = PokeApi.of(make);
+export const PokeApiLive = Layer.effect(PokeApi, make).pipe(
+  Layer.provide(Layer.mergeAll(PokemonCollectionLive, BuildPokeApiUrlLive))
+);
 
 export const PokeApiTest = PokeApi.of({
   getPokemon: Effect.gen(function* () {
