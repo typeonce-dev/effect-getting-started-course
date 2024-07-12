@@ -1,24 +1,19 @@
-import { Schema, type ParseResult } from "@effect/schema";
-import { Config, Context, Effect } from "effect";
-import type { ConfigError } from "effect/ConfigError";
+import { Schema } from "@effect/schema";
+import { Context, Effect } from "effect";
+import { BuildPokeApiUrl } from "./BuildPokeApiUrl";
 import type { FetchError, JsonError } from "./errors";
+import { PokemonCollection } from "./PokemonCollection";
 import { Pokemon } from "./schemas";
 
-export interface PokeApi {
-  readonly getPokemon: Effect.Effect<
-    typeof Pokemon.Type,
-    FetchError | JsonError | ParseResult.ParseError | ConfigError
-  >;
-}
-
-export const PokeApi = Context.GenericTag<PokeApi>("PokeApi");
-
-export const PokeApiLive = PokeApi.of({
+const make = {
   getPokemon: Effect.gen(function* () {
-    const baseUrl = yield* Config.string("BASE_URL");
+    const pokemonCollection = yield* PokemonCollection;
+    const buildPokeApiUrl = yield* BuildPokeApiUrl;
+
+    const requestUrl = buildPokeApiUrl({ name: pokemonCollection[0] });
 
     const response = yield* Effect.tryPromise({
-      try: () => fetch(`${baseUrl}/api/v2/pokemon/garchomp/`),
+      try: () => fetch(requestUrl),
       catch: (): FetchError => ({ _tag: "FetchError" }),
     });
 
@@ -33,7 +28,13 @@ export const PokeApiLive = PokeApi.of({
 
     return yield* Schema.decodeUnknown(Pokemon)(json);
   }),
-});
+};
+
+type PokeApi = typeof make;
+
+export const PokeApi = Context.GenericTag<PokeApi>("PokeApi");
+
+export const PokeApiLive = PokeApi.of(make);
 
 export const PokeApiTest = PokeApi.of({
   getPokemon: Effect.gen(function* () {
