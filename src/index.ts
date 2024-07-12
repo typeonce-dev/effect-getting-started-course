@@ -1,4 +1,4 @@
-import { Effect, Layer } from "effect";
+import { Effect, Layer, ManagedRuntime } from "effect";
 import { BuildPokeApiUrlLive } from "./BuildPokeApiUrl";
 import { PokeApi, PokeApiLive } from "./PokeApi";
 import { PokeApiUrlLive } from "./PokeApiUrl";
@@ -10,6 +10,8 @@ const MainLayer = Layer.mergeAll(
   PokeApiUrlLive,
   BuildPokeApiUrlLive
 );
+
+const PokemonRuntime = ManagedRuntime.make(MainLayer);
 
 export const program = Effect.gen(function* () {
   const pokeApi = yield* PokeApi;
@@ -26,4 +28,4 @@ const main = runnable.pipe(
   })
 );
 
-Effect.runPromise(main).then(console.log);
+PokemonRuntime.runPromise(main).then(console.log);
