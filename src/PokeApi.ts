@@ -32,10 +32,10 @@ const make = Effect.gen(function* () {
   };
 });
 
-type PokeApi = typeof make;
-
-export const PokeApi =
-  Context.GenericTag<Effect.Effect.Success<PokeApi>>("PokeApi");
+export class PokeApi extends Context.Tag("PokeApi")<
+  PokeApi,
+  Effect.Effect.Success<typeof make>
+>() {}
 
 export const PokeApiLive = Layer.effect(PokeApi, make).pipe(
   Layer.provide(Layer.mergeAll(PokemonCollectionLive, BuildPokeApiUrlLive))

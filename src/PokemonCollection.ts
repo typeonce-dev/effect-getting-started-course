@@ -1,9 +1,13 @@
 import { Context, Layer, type Array } from "effect";
 
-export type PokemonCollection = Array.NonEmptyArray<string>;
-
-export const PokemonCollection =
-  Context.GenericTag<PokemonCollection>("PokemonCollection");
+export class PokemonCollection extends Context.Tag("PokemonCollection")<
+  PokemonCollection,
+  Array.NonEmptyArray<string>
+>() {
+  addPokemon(name: string) {
+    return PokemonCollection.of([...this.Type, name]);
+  }
+}
 
 export const PokemonCollectionLive = Layer.succeed(
   PokemonCollection,
