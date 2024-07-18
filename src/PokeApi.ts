@@ -35,11 +35,24 @@ const make = Effect.gen(function* () {
 export class PokeApi extends Context.Tag("PokeApi")<
   PokeApi,
   Effect.Effect.Success<typeof make>
->() {}
+>() {
+  static readonly Live = Layer.effect(this, make).pipe(
+    Layer.provide(Layer.mergeAll(PokemonCollectionLive, BuildPokeApiUrlLive))
+  );
 
-export const PokeApiLive = Layer.effect(PokeApi, make).pipe(
-  Layer.provide(Layer.mergeAll(PokemonCollectionLive, BuildPokeApiUrlLive))
-);
+  static readonly Test = Layer.succeed(
+    this,
+    this.of({
+      getPokemon: Effect.succeed({
+        id: 1,
+        height: 10,
+        weight: 10,
+        name: "my-name",
+        order: 1,
+      }),
+    })
+  );
+}
 
 export const PokeApiTest = PokeApi.of({
   getPokemon: Effect.gen(function* () {

@@ -1,11 +1,11 @@
 import { Effect, Layer, ManagedRuntime } from "effect";
 import { BuildPokeApiUrlLive } from "./BuildPokeApiUrl";
-import { PokeApi, PokeApiLive } from "./PokeApi";
+import { PokeApi } from "./PokeApi";
 import { PokeApiUrlLive } from "./PokeApiUrl";
 import { PokemonCollectionLive } from "./PokemonCollection";
 
 const MainLayer = Layer.mergeAll(
-  PokeApiLive,
+  PokeApi.Live,
   PokemonCollectionLive,
   PokeApiUrlLive,
   BuildPokeApiUrlLive
