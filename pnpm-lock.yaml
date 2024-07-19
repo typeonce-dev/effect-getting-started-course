@@ -5,12 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@effect/platform':
+    specifier: ^0.59.2
+    version: 0.59.2(@effect/schema@0.68.26)(effect@3.5.6)
   '@effect/schema':
-    specifier: ^0.68.21
-    version: 0.68.21(effect@3.5.1)
+    specifier: ^0.68.26
+    version: 0.68.26(effect@3.5.6)
   effect:
-    specifier: ^3.5.1
-    version: 3.5.1
+    specifier: ^3.5.6
+    version: 3.5.6
 
 devDependencies:
   '@types/node':
@@ -51,13 +54,25 @@ packages:
       statuses: 2.0.1
     dev: true
 
-  /@effect/schema@0.68.21(effect@3.5.1):
-    resolution: {integrity: sha512-N+UmVaBXyAz4g0eMPKUOvz4lrjlboAnYog3tIiKlwFMUhGqI1Vq+GQ8dteXisqqKJzzLFn15R9LE6uoX/mlAlw==}
+  /@effect/platform@0.59.2(@effect/schema@0.68.26)(effect@3.5.6):
+    resolution: {integrity: sha512-mKhNFcElmQ10ofiCpxpkWpGbU/s2rELujjasgt339iatmtcg5xdxbIPLyvIAJga+CJq6Mhg2sTOGlfwE6GFu2Q==}
     peerDependencies:
-      effect: ^3.5.1
+      '@effect/schema': ^0.68.26
+      effect: ^3.5.6
     dependencies:
-      effect: 3.5.1
-      fast-check: 3.19.0
+      '@effect/schema': 0.68.26(effect@3.5.6)
+      effect: 3.5.6
+      find-my-way-ts: 0.1.5
+      multipasta: 0.2.2
+    dev: false
+
+  /@effect/schema@0.68.26(effect@3.5.6):
+    resolution: {integrity: sha512-o1O/ZmlHXRe9t548YrQ9sudjRWJqCtsU9KnQHzvZm5pHSc4reuZVQufCXctcR0aETf9OFOYUuETrxjEQehq/Lg==}
+    peerDependencies:
+      effect: ^3.5.6
+    dependencies:
+      effect: 3.5.6
+      fast-check: 3.20.0
     dev: false
 
   /@esbuild/aix-ppc64@0.21.5:
@@ -683,8 +698,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /effect@3.5.1:
-    resolution: {integrity: sha512-pwEqTNdPTvz7LzWKz99VeLLklOlgfqgWVXDepCudrkTU6ufaLqJ+62Sd42BaiGAt1vrnJBNhtpht+u+/7LK32g==}
+  /effect@3.5.6:
+    resolution: {integrity: sha512-3PMiC+XMaLkHx9Nlxfr6ot/8/gVq9aEjMlBvyKzJx0p4h1ZyNEjPxvAZQ9tlxAtXBvmfRpmIwHxG99hi8qhEtQ==}
     dev: false
 
   /emoji-regex@8.0.0:
@@ -748,11 +763,15 @@ packages:
       strip-final-newline: 3.0.0
     dev: true
 
-  /fast-check@3.19.0:
-    resolution: {integrity: sha512-CO2JX/8/PT9bDGO1iXa5h5ey1skaKI1dvecERyhH4pp3PGjwd3KIjMAXEg79Ps9nclsdt4oPbfqiAnLU0EwrAQ==}
+  /fast-check@3.20.0:
+    resolution: {integrity: sha512-pZIjqLpOZgdSLecec4GKC3Zq5702MZ34upMKxojnNVSWA0K64V3pXOBT1Wdsrc3AphLtzRBbsi8bRWF4TUGmUg==}
     engines: {node: '>=8.0.0'}
     dependencies:
       pure-rand: 6.1.0
+    dev: false
+
+  /find-my-way-ts@0.1.5:
+    resolution: {integrity: sha512-4GOTMrpGQVzsCH2ruUn2vmwzV/02zF4q+ybhCIrw/Rkt3L8KWcycdC6aJMctJzwN4fXD4SD5F/4B9Sksh5rE0A==}
     dev: false
 
   /fsevents@2.3.3:
@@ -875,6 +894,10 @@ packages:
       typescript: 5.5.3
       yargs: 17.7.2
     dev: true
+
+  /multipasta@0.2.2:
+    resolution: {integrity: sha512-KKGdmXIJUmt9BV45LsbUdMnju8eCNSyF9KpbyqK2E3wQXjpPQOg52/Hc+nsmBacmEkNxLVT5h1y3ZgEXB4prXg==}
+    dev: false
 
   /mute-stream@1.0.0:
     resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}

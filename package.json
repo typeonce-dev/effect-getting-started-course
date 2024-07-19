@@ -20,7 +20,8 @@
     "vitest": "^2.0.2"
   },
   "dependencies": {
-    "@effect/schema": "^0.68.21",
-    "effect": "^3.5.1"
+    "@effect/platform": "^0.59.2",
+    "@effect/schema": "^0.68.26",
+    "effect": "^3.5.6"
   }
 }
