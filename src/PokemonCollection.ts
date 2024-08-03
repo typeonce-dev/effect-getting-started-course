@@ -4,12 +4,9 @@ export class PokemonCollection extends Context.Tag("PokemonCollection")<
   PokemonCollection,
   Array.NonEmptyArray<string>
 >() {
-  addPokemon(name: string) {
-    return PokemonCollection.of([...this.Type, name]);
-  }
+  static readonly Live = Layer.succeed(this, [
+    "staryu",
+    "perrserker",
+    "flaaffy",
+  ]);
 }
-
-export const PokemonCollectionLive = Layer.succeed(
-  PokemonCollection,
-  PokemonCollection.of(["staryu", "perrserker", "flaaffy"])
-);

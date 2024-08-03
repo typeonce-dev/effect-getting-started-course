@@ -1,15 +1,15 @@
 import { Context, Effect, Layer } from "effect";
-import { PokeApiUrl, PokeApiUrlLive } from "./PokeApiUrl";
+import { PokeApiUrl } from "./PokeApiUrl";
 
-export type BuildPokeApiUrl = ({ name }: { name: string }) => string;
-
-export const BuildPokeApiUrl =
-  Context.GenericTag<BuildPokeApiUrl>("BuildPokeApiUrl");
-
-export const BuildPokeApiUrlLive = Layer.effect(
+export class BuildPokeApiUrl extends Context.Tag("BuildPokeApiUrl")<
   BuildPokeApiUrl,
-  Effect.gen(function* () {
-    const pokeApiUrl = yield* PokeApiUrl;
-    return BuildPokeApiUrl.of(({ name }) => `${pokeApiUrl}/${name}`);
-  })
-).pipe(Layer.provide(PokeApiUrlLive));
+  ({ name }: { name: string }) => string
+>() {
+  static readonly Live = Layer.effect(
+    this,
+    Effect.gen(function* () {
+      const pokeApiUrl = yield* PokeApiUrl;
+      return ({ name }) => `${pokeApiUrl}/${name}`;
+    })
+  ).pipe(Layer.provide(PokeApiUrl.Live));
+}

@@ -1,8 +1,8 @@
 import { Schema } from "@effect/schema";
 import { Context, Effect, Layer } from "effect";
-import { BuildPokeApiUrl, BuildPokeApiUrlLive } from "./BuildPokeApiUrl";
-import type { FetchError, JsonError } from "./errors";
-import { PokemonCollection, PokemonCollectionLive } from "./PokemonCollection";
+import { BuildPokeApiUrl } from "./BuildPokeApiUrl";
+import { FetchError, JsonError } from "./errors";
+import { PokemonCollection } from "./PokemonCollection";
 import { Pokemon } from "./schemas";
 
 const make = Effect.gen(function* () {
@@ -15,16 +15,16 @@ const make = Effect.gen(function* () {
 
       const response = yield* Effect.tryPromise({
         try: () => fetch(requestUrl),
-        catch: (): FetchError => ({ _tag: "FetchError" }),
+        catch: () => new FetchError(),
       });
 
       if (!response.ok) {
-        return yield* Effect.fail<FetchError>({ _tag: "FetchError" });
+        return yield* new FetchError();
       }
 
       const json = yield* Effect.tryPromise({
         try: () => response.json(),
-        catch: (): JsonError => ({ _tag: "JsonError" }),
+        catch: () => new JsonError(),
       });
 
       return yield* Schema.decodeUnknown(Pokemon)(json);
@@ -37,7 +37,7 @@ export class PokeApi extends Context.Tag("PokeApi")<
   Effect.Effect.Success<typeof make>
 >() {
   static readonly Live = Layer.effect(this, make).pipe(
-    Layer.provide(Layer.mergeAll(PokemonCollectionLive, BuildPokeApiUrlLive))
+    Layer.provide(Layer.mergeAll(PokemonCollection.Live, BuildPokeApiUrl.Live))
   );
 
   static readonly Test = Layer.succeed(
@@ -53,23 +53,3 @@ export class PokeApi extends Context.Tag("PokeApi")<
     })
   );
 }
-
-export const PokeApiTest = PokeApi.of({
-  getPokemon: Effect.gen(function* () {
-    const response = yield* Effect.tryPromise({
-      try: () => fetch(`http://localhost:3000/api/v2/pokemon/garchomp/`),
-      catch: (): FetchError => ({ _tag: "FetchError" }),
-    });
-
-    if (!response.ok) {
-      return yield* Effect.fail<FetchError>({ _tag: "FetchError" });
-    }
-
-    const json = yield* Effect.tryPromise({
-      try: () => response.json(),
-      catch: (): JsonError => ({ _tag: "JsonError" }),
-    });
-
-    return yield* Schema.decodeUnknown(Pokemon)(json);
-  }),
-});

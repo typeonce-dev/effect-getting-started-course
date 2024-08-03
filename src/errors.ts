@@ -1,7 +1,4 @@
-export interface FetchError {
-  readonly _tag: "FetchError";
-}
+import { Data } from "effect";
 
-export interface JsonError {
-  readonly _tag: "JsonError";
-}
+export class FetchError extends Data.TaggedError("FetchError")<{}> {}
+export class JsonError extends Data.TaggedError("JsonError")<{}> {}

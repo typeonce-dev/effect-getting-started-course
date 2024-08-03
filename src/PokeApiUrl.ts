@@ -1,13 +1,14 @@
 import { Config, Context, Effect, Layer } from "effect";
 
-export type PokeApiUrl = string;
-
-export const PokeApiUrl = Context.GenericTag<PokeApiUrl>("PokeApiUrl");
-
-export const PokeApiUrlLive = Layer.effect(
+export class PokeApiUrl extends Context.Tag("PokeApiUrl")<
   PokeApiUrl,
-  Effect.gen(function* () {
-    const baseUrl = yield* Config.string("BASE_URL");
-    return PokeApiUrl.of(`${baseUrl}/api/v2/pokemon`);
-  })
-);
+  string
+>() {
+  static readonly Live = Layer.effect(
+    this,
+    Effect.gen(function* () {
+      const baseUrl = yield* Config.string("BASE_URL");
+      return `${baseUrl}/api/v2/pokemon`;
+    })
+  );
+}
