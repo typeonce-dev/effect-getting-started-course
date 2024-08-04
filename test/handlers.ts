@@ -1,7 +1,7 @@
 import { HttpResponse, http } from "msw";
 import type { Pokemon } from "../src/schemas";
 
-const mockPokemon: typeof Pokemon.Type = {
+const mockPokemon: Pokemon = {
   id: 1,
   height: 10,
   weight: 10,

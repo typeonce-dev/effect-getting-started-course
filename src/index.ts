@@ -5,7 +5,7 @@ import { PokeApiUrl } from "./PokeApiUrl";
 import { PokemonCollection } from "./PokemonCollection";
 
 const MainLayer = Layer.mergeAll(
-  PokeApi.Test,
+  PokeApi.Live,
   PokemonCollection.Live,
   BuildPokeApiUrl.Live,
   PokeApiUrl.Live
