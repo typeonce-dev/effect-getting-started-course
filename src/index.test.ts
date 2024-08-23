@@ -17,6 +17,6 @@ it("returns a valid pokemon", async () => {
     height: 10,
     weight: 10,
     order: 1,
-    name: "my-name",
+    name: "myname",
   });
 });
