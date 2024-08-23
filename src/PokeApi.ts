@@ -42,7 +42,7 @@ export class PokeApi extends Context.Tag("PokeApi")<
 
   static readonly Test = Layer.succeed(
     this,
-    this.of({
+    PokeApi.of({
       getPokemon: Effect.succeed({
         id: 1,
         height: 10,
