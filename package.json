@@ -1,17 +1,14 @@
 {
   "name": "effect-getting-started-course",
   "version": "1.0.0",
-  "description": "",
   "main": "src/index.js",
+  "author": "Sandro Maglione",
+  "license": "MIT",
   "scripts": {
     "dev": "BASE_URL=https://pokeapi.co tsx src/index.ts",
-    "logging": "tsx src/+1/logging.ts",
-    "tsc": "tsc",
+    "typecheck": "tsc",
     "test": "vitest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
     "msw": "^2.3.1",

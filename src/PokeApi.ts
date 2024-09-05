@@ -39,24 +39,4 @@ export class PokeApi extends Context.Tag("PokeApi")<
   static readonly Live = Layer.effect(this, make).pipe(
     Layer.provide(Layer.mergeAll(PokemonCollection.Live, BuildPokeApiUrl.Live))
   );
-
-  static readonly Test = Layer.succeed(this, {
-    getPokemon: Effect.gen(function* () {
-      const response = yield* Effect.tryPromise({
-        try: () => fetch(`http://localhost:3000/api/v2/pokemon/garchomp/`),
-        catch: () => new FetchError(),
-      });
-
-      if (!response.ok) {
-        return yield* new FetchError();
-      }
-
-      const json = yield* Effect.tryPromise({
-        try: () => response.json(),
-        catch: () => new JsonError(),
-      });
-
-      return yield* Schema.decodeUnknown(Pokemon)(json);
-    }),
-  });
 }

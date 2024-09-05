@@ -5,7 +5,7 @@ const MainLayer = Layer.mergeAll(PokeApi.Live);
 
 const PokemonRuntime = ManagedRuntime.make(MainLayer);
 
-export const program = Effect.gen(function* () {
+const program = Effect.gen(function* () {
   const pokeApi = yield* PokeApi;
   return yield* pokeApi.getPokemon;
 });

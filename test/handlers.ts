@@ -10,7 +10,7 @@ const mockPokemon: Pokemon = {
 };
 
 export const handlers = [
-  http.get("http://localhost:3000/api/v2/pokemon/garchomp/", () => {
+  http.get("http://localhost:3000/api/v2/pokemon/*", () => {
     return HttpResponse.json(mockPokemon);
   }),
 ];
