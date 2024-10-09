@@ -1,14 +1,15 @@
 import {
+  FetchHttpClient,
   HttpClient,
-  HttpClientRequest,
   HttpClientResponse,
 } from "@effect/platform";
+import { Effect } from "effect";
 import { Pokemon } from "../schemas";
 
-export const main = HttpClientRequest.get(
+export const main = HttpClient.get(
   "https://pokeapi.co/api/v2/pokemon/squirtle"
 ).pipe(
-  HttpClient.fetchOk.pipe(
-    HttpClient.mapEffect(HttpClientResponse.schemaBodyJson(Pokemon))
-  )
+  Effect.flatMap(HttpClientResponse.schemaBodyJson(Pokemon)),
+  Effect.scoped,
+  Effect.provide(FetchHttpClient.layer)
 );
