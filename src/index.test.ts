@@ -12,7 +12,7 @@ const TestConfigProvider = ConfigProvider.fromMap(
 );
 
 const ConfigProviderLayer = Layer.setConfigProvider(TestConfigProvider);
-const MainLayer = PokeApi.Live.pipe(Layer.provide(ConfigProviderLayer));
+const MainLayer = PokeApi.Default.pipe(Layer.provide(ConfigProviderLayer));
 
 const TestingRuntime = ManagedRuntime.make(MainLayer);
 

@@ -1,7 +1,7 @@
 import { Effect, Layer, ManagedRuntime } from "effect";
 import { PokeApi } from "./PokeApi";
 
-const MainLayer = Layer.mergeAll(PokeApi.Live);
+const MainLayer = Layer.mergeAll(PokeApi.Default);
 
 const PokemonRuntime = ManagedRuntime.make(MainLayer);
 
