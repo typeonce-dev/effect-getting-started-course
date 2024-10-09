@@ -32,5 +32,5 @@ export class PokeApi extends Effect.Service<PokeApi>()("PokeApi", {
       }),
     };
   }),
-  dependencies: [PokemonCollection.Live, BuildPokeApiUrl.Live],
+  dependencies: [PokemonCollection.Default, BuildPokeApiUrl.Default],
 }) {}
