@@ -9,14 +9,11 @@ importers:
   .:
     dependencies:
       '@effect/platform':
-        specifier: ^0.68.1
-        version: 0.68.1(@effect/schema@0.75.2(effect@3.9.1))(effect@3.9.1)
-      '@effect/schema':
-        specifier: ^0.75.2
-        version: 0.75.2(effect@3.9.1)
+        specifier: ^0.69.2
+        version: 0.69.2(effect@3.10.0)
       effect:
-        specifier: ^3.9.1
-        version: 3.9.1
+        specifier: ^3.10.0
+        version: 3.10.0
     devDependencies:
       '@types/node':
         specifier: ^20.14.10
@@ -46,16 +43,10 @@ packages:
   '@bundled-es-modules/statuses@1.0.1':
     resolution: {integrity: sha512-yn7BklA5acgcBr+7w064fGV+SGIFySjCKpqjcWgBAIfrAkY+4GQTJJHQMeT3V/sgz23VTEVV8TtOmkvJAhFVfg==}
 
-  '@effect/platform@0.68.1':
-    resolution: {integrity: sha512-eXYEnF0yqq1QpJVAx4Z4v/rYszHg/sT973XgUvj2UkaShcDBM1B2rN1pWRXx0RwjWWlqN0qDDVe2XkAf2u/xRw==}
+  '@effect/platform@0.69.2':
+    resolution: {integrity: sha512-2hUmLDyXeeRv4icjQQ2t50JCYVdg2vxmsb9A5hxVUelEvPP0X/UF9oqMdP9W+c5x19TEVXDrdyGIg4lN8srKsA==}
     peerDependencies:
-      '@effect/schema': ^0.75.2
-      effect: ^3.9.1
-
-  '@effect/schema@0.75.2':
-    resolution: {integrity: sha512-kU93nBeWXP2CwxspZsSHVQx5xbgZ3OV7UYwhqst7iv01cd2Dk00kIP33PhIWEJVJi30uwbTu8nKVjsHANtgpig==}
-    peerDependencies:
-      effect: ^3.9.1
+      effect: ^3.10.0
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -434,8 +425,8 @@ packages:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
     engines: {node: '>=6'}
 
-  effect@3.9.1:
-    resolution: {integrity: sha512-dxd+eiCqxOriBM12EQ6uIjn3cJpKIP7DfqafWTVEb45aMO157iEeDcO09SEdVSAy/OqpFlRF+4Lx7Hei1ipvOA==}
+  effect@3.10.0:
+    resolution: {integrity: sha512-J9rsJBXNHZxklJTbHriY8D9wIHhmvXDamExW4pPZ2kPNZ+XRfstXeHBqpXAIK+B42ASVbuDswAXyup5WHWK6jg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -791,17 +782,11 @@ snapshots:
     dependencies:
       statuses: 2.0.1
 
-  '@effect/platform@0.68.1(@effect/schema@0.75.2(effect@3.9.1))(effect@3.9.1)':
+  '@effect/platform@0.69.2(effect@3.10.0)':
     dependencies:
-      '@effect/schema': 0.75.2(effect@3.9.1)
-      effect: 3.9.1
+      effect: 3.10.0
       find-my-way-ts: 0.1.5
       multipasta: 0.2.5
-
-  '@effect/schema@0.75.2(effect@3.9.1)':
-    dependencies:
-      effect: 3.9.1
-      fast-check: 3.22.0
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -1092,7 +1077,9 @@ snapshots:
 
   deep-eql@5.0.2: {}
 
-  effect@3.9.1: {}
+  effect@3.10.0:
+    dependencies:
+      fast-check: 3.22.0
 
   emoji-regex@8.0.0: {}
 

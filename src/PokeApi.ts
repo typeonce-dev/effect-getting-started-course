@@ -1,5 +1,4 @@
-import { Schema } from "@effect/schema";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { BuildPokeApiUrl } from "./BuildPokeApiUrl";
 import { FetchError, JsonError } from "./errors";
 import { PokemonCollection } from "./PokemonCollection";
