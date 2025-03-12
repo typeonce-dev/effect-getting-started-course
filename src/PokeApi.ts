@@ -5,6 +5,7 @@ import { PokemonCollection } from "./PokemonCollection";
 import { Pokemon } from "./schemas";
 
 export class PokeApi extends Effect.Service<PokeApi>()("PokeApi", {
+  dependencies: [PokemonCollection.Default, BuildPokeApiUrl.Default],
   effect: Effect.gen(function* () {
     const pokemonCollection = yield* PokemonCollection;
     const buildPokeApiUrl = yield* BuildPokeApiUrl;
@@ -31,5 +32,4 @@ export class PokeApi extends Effect.Service<PokeApi>()("PokeApi", {
       }),
     };
   }),
-  dependencies: [PokemonCollection.Default, BuildPokeApiUrl.Default],
 }) {}
